@@ -21,4 +21,5 @@ function togglemode () {
     }*/ 
   /*não vou fazer mas vou deixar anotado para aprender*/ 
 
-}
+} 
+
