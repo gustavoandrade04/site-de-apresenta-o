@@ -1,0 +1,167 @@
+/*o tamanho de texto padrão do navegador é 16px e o line height de 24px*/
+
+* {
+  margin: 0;
+  padding: 0; /*para o padding, se eu só usar uma medida, aplica para todos os lados.
+  se eu usar duas medidas, a primeira cuida da vertical e a segunda da horizontal.
+  se usar 3 medidas, a primeira cuida do topo, a segunda da horizontal e a terceira de baixo.
+  se eu usar 4, cada um cuida de um sentido, seguindo o sentido horario e começando pelo topo */
+  box-sizing: border-box;
+}
+
+:root {
+  --text-color: #ffffff;
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --stroke-color:rgba(255, 255, 255, 0.5);
+  --background-color: rgba(255, 255, 255, 0.1);
+  --background-color-hover: rgba(255, 255, 255, 0.2);
+  --social-link-hover: rgba(255, 255, 255, 0.2); 
+  --switch-bg: url(./assets/MoonStars.svg);
+}
+
+.light {
+  --text-color: #000000;
+  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --background-color: rgba(0, 0, 0, 0.1);
+  --background-color-hover: rgba(0, 0, 0, 0.2);
+  --social-link-hover: rgba(0, 0, 0, 0.1);
+  --switch-bg: url(./assets/Sun.svg);
+}
+
+body {
+  /*background-image: url(./assets/bg-mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;*/
+
+  /*isso tudo em cima é a mesma coisa que essa versão resumida:*/
+  background: var(--bg-url) no-repeat top center/cover;
+}
+body * /*o asterisco é o seletor universal, ou seja, essa regra irá ser aplicada para todo o body */ {
+  font-family: "Inter", sans-serif; /* o font weight padrão é o de 400*/
+  color: var(--text-color);
+}
+#container {
+  width: 360px;
+  /*margin-right: auto;
+  margin-left: auto; = margin: auto*/
+  margin: 56px auto 0px;
+  padding: 0 24px;
+}
+
+/*Profile*/
+
+#profile {
+  text-align: center;
+  padding: 24px;
+}
+
+#profile img {
+  width: 112px;
+  margin: auto;
+  display: block;
+}
+
+#profile p {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 8px;
+}
+
+/*Switch*/
+
+#switch {
+  /*border: 1px solid red;*/   /*só para mostrar o tamanho do switch, depois é só tirar*/
+  position: relative; /*para o botão ficar posicionado em relação ao switch, ou seja, o pai, e não em relação a toda a página*/
+  width: 64px; /*o switch tem que ter a mesma largura do span, para o botão ficar dentro do switch, ou seja, do pai*/
+  margin: 4px auto; /*o auto é para centralizar o switch, ou seja, o pai, e os 4px é para dar um espaçamento entre o switch e os outros elementos*/
+}
+
+
+#switch button {
+ width: 32px;
+ height: 32px;
+ background:#ffffff var(--switch-bg) no-repeat center;
+ border-radius: 50%;
+ border: 0;
+ position: absolute; /*para os elementos se sobreporem*/
+ top: 50%;
+ left:0; 
+ z-index: 1; /*para o botão ficar em cima do span, isso significa que ele é o elemento da frente*/
+ transform: translateY(-50%);
+}
+
+.light #switch button {
+ right:0; /*quando estiver no modo light, o botão vai para a direita, ou seja, para o outro lado do switch*/
+ left: initial; /*para resetar a propriedade left, ou seja, tirar o left: 0 que estava no modo dark, e deixar o right: 0 do modo light funcionar corretamente*/
+}
+
+#switch span {
+  display: block;
+  height: 24px;
+  width: 64px;
+  border: 1px solid var(--stroke-color);
+  background: var(--background-color);
+  border-radius: 9999px; /*quando se usa um valor muito alto, o arredondamento é tão grande que o elemento fica completamente arredondado, ou seja, em formato de círculo ou elipse*/
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /*teve que por o webkit para funcionar em todas as plataformas, acessar o site can i use para conferir*/
+}
+
+/*LINKS!*/
+
+ul {
+  list-style: none;
+  display: flex; /* flex é um modelo de alinhamento que tem como caracteristica o alinhamento com seu eixo. seu eixo principal é o horizontal*/
+  flex-direction: column; /* quando se usa isso, muda o eixo principal para o vertical*/
+  gap: 16px; /*gap é o espaço dado entre os itens*/
+  padding: 24px 0;
+}
+
+ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--background-color); /*o a do rgba é a é o canal responsável pela transparência (ou opacidade) daquela cor.*/
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px; /*arredondamento de borda*/
+  padding: 16px 24px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /* para o safari */ /*teve que por o webkit para funcionar em todas as plataformas, acessar o site can i use para conferir*/
+  text-decoration: none; /*para tirar, colocar ou por em cima o sublinhado do texto*/
+  font-weight: 500;
+  transition: background 0.2s; /*só pra fazer um efeito visual quando abrir a página*/
+}
+
+/*o hover é o efeito que ocorre quando o mouse passa por cima do elemento e é um pseudo-selector*/
+ul li a:hover {
+  background: var(--background-color-hover);
+  border: 1.5px solid var(--text-color);
+}
+
+#social-links {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+  font-size: 24px; /*font size por que esses são os textos inclusos no #social-links*/ 
+}
+
+#social-links a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+#social-links a:hover{
+  background: var(--social-link-hover);
+}
+
+footer {
+  padding: 24px 0;  
+  text-align: center;
+  font-size: 14px;
+}
