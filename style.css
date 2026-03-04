@@ -93,11 +93,20 @@ body * /*o asterisco é o seletor universal, ou seja, essa regra irá ser aplica
  left:0; 
  z-index: 1; /*para o botão ficar em cima do span, isso significa que ele é o elemento da frente*/
  transform: translateY(-50%);
+
+ animation: slide-out 0.2s forwards; 
 }
 
 .light #switch button {
- right:0; /*quando estiver no modo light, o botão vai para a direita, ou seja, para o outro lado do switch*/
- left: initial; /*para resetar a propriedade left, ou seja, tirar o left: 0 que estava no modo dark, e deixar o right: 0 do modo light funcionar corretamente*/
+ animation: slide-in 0.2s forwards; /*forwards é para a animação manter o estado final, ou seja, o left: 50% do keyframe, e não voltar para o estado inicial, ou seja, o left: 0 do modo dark*/
+
+ /*TUDO ISSO VAI MUDAR PARA QUE SEJA POSSIVEL FAZER A ANIMAÇÃO*/
+  /*right:0; quando estiver no modo light, o botão vai para a direita, ou seja, para o outro lado do switch*/
+ /*left: initial;*/ /*para resetar a propriedade left, ou seja, tirar o left: 0 que estava no modo dark, e deixar o right: 0 do modo light funcionar corretamente*/
+}
+
+#switch button:hover {
+  outline: 8px solid var(--background-color-hover);
 }
 
 #switch span {
@@ -168,13 +177,34 @@ footer {
   font-size: 14px;
 }
 
+
+/*todos esse que começam com @ são chamados de at*/
+
 /*MEDIA QUARIES*/ /*só funcionam se tiver o html de viewport (linha 11)*/
 @media (max-width: 768px)   /* Estilos para telas mAIORES */{
  :root {
   --bg-url: url(./assets/bg-desktop.jpg);}
   
-  :light {
+  .light {
     --bg-url: url(./assets/bg-desktop-light.jpg);
   }
 
+}
+/*animações*/
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to{
+    left: 50%;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    left:50%;
+  }
+  to{
+    left: 0;
+  }
 }
