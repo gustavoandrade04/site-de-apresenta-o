@@ -37,6 +37,7 @@ body {
 
   /*isso tudo em cima é a mesma coisa que essa versão resumida:*/
   background: var(--bg-url) no-repeat top center/cover;
+  height: 100vh; /*para o background ocupar toda a altura da tela, ou seja, 100% da altura da viewport*/
 }
 body * /*o asterisco é o seletor universal, ou seja, essa regra irá ser aplicada para todo o body */ {
   font-family: "Inter", sans-serif; /* o font weight padrão é o de 400*/
@@ -165,4 +166,15 @@ footer {
   padding: 24px 0;  
   text-align: center;
   font-size: 14px;
+}
+
+/*MEDIA QUARIES*/ /*só funcionam se tiver o html de viewport (linha 11)*/
+@media (max-width: 768px)   /* Estilos para telas mAIORES */{
+ :root {
+  --bg-url: url(./assets/bg-desktop.jpg);}
+  
+  :light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+
 }
